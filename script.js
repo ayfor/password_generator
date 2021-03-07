@@ -18,12 +18,29 @@ function generatePassword(){
 
   var password = '';
 
-  //First specifiy the number of characters
-  var numberOfCharacters = +window.prompt("Please enter the number of characters in the desired password (Between 8 and 128 characters)", "8");
+  //First specifiy the number of characters (cast to number)
+  var numberOfCharacters = window.prompt("Please enter the number of characters in the desired password (Between 8 and 128 characters)", "8");
 
-  //Verify number of characters is between 8 and 128
-  if( numberOfCharacters < 8 || numberOfCharacters > 128 ){
-    window.alert("Invalid number of characters. Please try again.");
+  var invalidCharacters = "abcdefghijlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'()\"*+,-.\\:;<=>?@[]^_`{|}";
+
+  var invalidCharactersArray = invalidCharacters.split('');
+
+  var numberOfCharactersArray = numberOfCharacters.split('');
+
+  var invalidFlag = false;
+
+  //Check if there are any invaliud characters entered
+  for (let index = 0; index < numberOfCharactersArray.length; index++) {
+    const element = numberOfCharactersArray[index];
+    if(invalidCharactersArray.includes(element)){
+      invalidFlag = true;
+    }
+  }
+
+
+  //Verify number of characters is between 8 and 128 and includes no invalid characters
+  if( numberOfCharacters < 8 || numberOfCharacters > 128 || invalidFlag){
+    window.alert("Invalid number of characters entered. Please try again.");
     return "-";
   }
 
@@ -57,46 +74,50 @@ function generatePassword(){
 
   var specialCharactersString = "!#$%&'()*+,-./:;<=>?@[]^_`{|}";
 
-  //In order to generate password, must first ensure that the password fits the requirements
-
+  //Instantiate character pool that can be used to generate characters for password based on selected criteria
   var characterPool = '';
 
   if(includeLowerCase){
+    //console.log("Lower Case Characters Selected");
     //Add guaranteed password criteria
     password += lowercaseCharactersString.charAt(Math.floor(Math.random() * lowercaseCharactersString.length));
-    console.log(password);
     characterPool = characterPool.concat(lowercaseCharactersString);
   }
 
   if(includeUpperCase){
+    //console.log("Upper Case Characters Selected");
     //Add guaranteed password criteria
     password += uppercaseCharactersString.charAt(Math.floor(Math.random() * uppercaseCharactersString.length));
-    console.log(password);
     characterPool = characterPool.concat(uppercaseCharactersString);
   }
 
   if(includeNumbers){
+    //console.log("Numeric Characters Selected");
     //Add guaranteed password criteria
     password += numericCharactersString.charAt(Math.floor(Math.random() * numericCharactersString.length));
-    console.log(password);
     characterPool = characterPool.concat(numericCharactersString);
   }
 
   if(includeSpecialCharacters){
+    //console.log("Special Characters Selected");
     //Add guaranteed password criteria
     password += specialCharactersString.charAt(Math.floor(Math.random() * specialCharactersString.length));
-    console.log(password);
     characterPool = characterPool.concat(specialCharactersString);
   }
 
-  console.log(characterPool);
-
-  console.log(password.length);
-  
-  //At this point, password length is equal to the number of criteria selected (out of 4)
+  //Check character pool
+  //console.log("Character Pool: " + characterPool);
 
 
+  //At this point, password length is equal to the number of criteria selected (max 4)
+  //Until the password is the appropriate length, add characters from the character pool defined by the selected criteria
+  while(password.length<numberOfCharacters){
+    password += characterPool.charAt(Math.floor(Math.random() * characterPool.length));
+  }
 
+  //console.log("Password Length = " + password.length);
+
+  return password;
 
 
 }
