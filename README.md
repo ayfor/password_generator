@@ -1,5 +1,4 @@
 # Password Generator README
-#development
 This project is a simple application that generates a password according to the criteria specified by the user. 
 
 The user starts the program by selecting the “Generate Password” button. Then the user is guided through a series of password criteria listed below where the user must select at least one type of character for the password (e.g. lowercase, uppercase, numeric or special characters).
