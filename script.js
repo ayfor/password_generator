@@ -18,9 +18,10 @@ function generatePassword(){
 
   var password = '';
 
-  //First specifiy the number of characters (cast to number)
+  //First user specifiy the number of characters 
   var numberOfCharacters = window.prompt("Please enter the number of characters in the desired password (Between 8 and 128 characters)", "8");
 
+  //Then check if there are any invalid characters present in the user-specified numberOfCharacters
   var invalidCharacters = "abcdefghijlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'()\"*+,-.\\:;<=>?@[]^_`{|}";
 
   var invalidCharactersArray = invalidCharacters.split('');
