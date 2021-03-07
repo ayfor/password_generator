@@ -65,25 +65,35 @@ function generatePassword(){
     //Add guaranteed password criteria
     password += lowercaseCharactersString.charAt(Math.floor(Math.random() * lowercaseCharactersString.length));
     console.log(password);
+    characterPool = characterPool.concat(lowercaseCharactersString);
   }
 
   if(includeUpperCase){
     //Add guaranteed password criteria
-    password += lowercaseCharactersString.charAt(Math.floor(Math.random() * lowercaseCharactersString.length));
+    password += uppercaseCharactersString.charAt(Math.floor(Math.random() * uppercaseCharactersString.length));
     console.log(password);
+    characterPool = characterPool.concat(uppercaseCharactersString);
   }
 
   if(includeNumbers){
     //Add guaranteed password criteria
-    password += lowercaseCharactersString.charAt(Math.floor(Math.random() * lowercaseCharactersString.length));
+    password += numericCharactersString.charAt(Math.floor(Math.random() * numericCharactersString.length));
     console.log(password);
+    characterPool = characterPool.concat(numericCharactersString);
   }
 
   if(includeSpecialCharacters){
     //Add guaranteed password criteria
-    password += lowercaseCharactersString.charAt(Math.floor(Math.random() * lowercaseCharactersString.length));
+    password += specialCharactersString.charAt(Math.floor(Math.random() * specialCharactersString.length));
     console.log(password);
+    characterPool = characterPool.concat(specialCharactersString);
   }
+
+  console.log(characterPool);
+
+  console.log(password.length);
+  
+  //At this point, password length is equal to the number of criteria selected (out of 4)
 
 
 
