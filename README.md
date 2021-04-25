@@ -13,3 +13,5 @@ The program then displays the generated password to the screen in place of the t
 Here is a link to the live application: https://ayfor.github.io/password_generator/
 
 ![](password_generator_ui.png)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
